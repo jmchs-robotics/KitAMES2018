@@ -1,4 +1,5 @@
 package org.usfirst.frc5933.KitBot2018.subsystems;
+//now is going to be used as the ball thrower  
 
 import org.usfirst.frc5933.KitBot2018.Robot;
 import org.usfirst.frc5933.KitBot2018.RobotMap;
@@ -26,7 +27,18 @@ public class Arm extends Subsystem {
 	private static final double kI = 0;//0.001;
 	private static final double kD = 0;
 	private static final double kF = 0;
-
+	
+	WPI_TalonSRX bigUn = RobotMap.armMotorTestBigUn; 
+	public final double speed = 0;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * The ArmPositions correspond to absolute positions on an encoder
 	 * feedback loop that the 'bot will score or get a cube from.
@@ -56,7 +68,7 @@ public class Arm extends Subsystem {
 		}
 	}
 
-	WPI_TalonSRX bigUn = RobotMap.armMotorTestBigUn;
+
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
