@@ -165,8 +165,8 @@ public class Drivetrain extends Subsystem {
 		rightMaster.configVoltageCompSaturation(voltage, timeout);
 		leftFollower1.configVoltageCompSaturation(voltage, timeout);
 		rightFollower1.configVoltageCompSaturation(voltage, timeout);
-		leftFollower2.configVoltageCompSaturation(voltage, timeout);
-		rightFollower2.configVoltageCompSaturation(voltage, timeout);
+		//leftFollower2.configVoltageCompSaturation(voltage, timeout);
+		//rightFollower2.configVoltageCompSaturation(voltage, timeout);
 	}
 
 	private void configPeakOutput(WPI_TalonSRX controller, double percentForward, double percentReverse) {
@@ -185,15 +185,15 @@ public class Drivetrain extends Subsystem {
 			rightMaster.setNeutralMode(NeutralMode.Brake);
 			leftFollower1.setNeutralMode(NeutralMode.Brake);
 			rightFollower1.setNeutralMode(NeutralMode.Brake);
-			leftFollower2.setNeutralMode(NeutralMode.Brake);
-			rightFollower2.setNeutralMode(NeutralMode.Brake);
+			//leftFollower2.setNeutralMode(NeutralMode.Brake);
+			//rightFollower2.setNeutralMode(NeutralMode.Brake);
 		}else {
 			leftMaster.setNeutralMode(NeutralMode.Coast);
 			rightMaster.setNeutralMode(NeutralMode.Coast);
 			leftFollower1.setNeutralMode(NeutralMode.Coast);
 			rightFollower1.setNeutralMode(NeutralMode.Coast);
-			leftFollower2.setNeutralMode(NeutralMode.Coast);
-			rightFollower2.setNeutralMode(NeutralMode.Coast);
+			//leftFollower2.setNeutralMode(NeutralMode.Coast);
+			//rightFollower2.setNeutralMode(NeutralMode.Coast);
 		}
 	}
 	
