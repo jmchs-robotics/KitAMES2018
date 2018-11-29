@@ -150,7 +150,7 @@ public class Drivetrain extends Subsystem {
 		configPeakOutput(leftFollower1, 1.0f, -1.0f);
 		configNominalOutput(leftFollower1, +0.0f, -0.0f);
 		//configPeakOutput(leftFollower2, 1.0f, -1.0f);
-		//configNominalOutput(leftFollower2, +0.0f, -0.0f);
+		// configNominalOutput(leftFollower2, +0.0f, -0.0f);
 		
 		configPeakOutput(rightMaster, 1.0f, -1.0f);
 		configNominalOutput(rightMaster, +0.0f, -0.0f);
