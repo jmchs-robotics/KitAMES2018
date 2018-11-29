@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['velocitymeasurementperiod',['velocityMeasurementPeriod',['../structctre_1_1phoenix_1_1_c_a_nifier_configuration.html#a4b89122aa6e170e7eeaab519e0c11578',1,'ctre::phoenix::CANifierConfiguration::velocityMeasurementPeriod()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_base_motor_controller_configuration.html#a1b6fb99a7e683bf1633f84d4cdffa41b',1,'ctre::phoenix::motorcontrol::can::BaseMotorControllerConfiguration::velocityMeasurementPeriod()']]],
+  ['velocitymeasurementwindow',['velocityMeasurementWindow',['../structctre_1_1phoenix_1_1_c_a_nifier_configuration.html#a84c6fe4e43a296acdd9654a6be04ac34',1,'ctre::phoenix::CANifierConfiguration::velocityMeasurementWindow()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_base_motor_controller_configuration.html#a8b1dcc73bd2a26c772f10b0d662e55b0',1,'ctre::phoenix::motorcontrol::can::BaseMotorControllerConfiguration::velocityMeasurementWindow()']]],
+  ['voltagecompsaturation',['voltageCompSaturation',['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_base_motor_controller_configuration.html#a5cac61558f9759309dc46d99984356da',1,'ctre::phoenix::motorcontrol::can::BaseMotorControllerConfiguration']]],
+  ['voltagemeasurementfilter',['voltageMeasurementFilter',['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_base_motor_controller_configuration.html#aa589804b8e6fb86cc84ba93aa73aee85',1,'ctre::phoenix::motorcontrol::can::BaseMotorControllerConfiguration']]]
+];

@@ -15,8 +15,10 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 /**
- *
+ * 181128 re-using 'arm' code for KitBot's ball thrower for AMES fall classic
+ * throwerSpeed is the internal parameter that keeps track of the user's desired speed
  */
 public class Arm extends Subsystem {
 	//Arm position constants
@@ -26,7 +28,60 @@ public class Arm extends Subsystem {
 	private static final double kI = 0;//0.001;
 	private static final double kD = 0;
 	private static final double kF = 0;
+	
+	//
+	// start 181128 work - operate the thrower motor
+	//
+	private double throwerSpeed = 0.0;  // 181128 the desired speed of the thrower, from 0.0 to 1.0
+	private static final double stdThrowerSpeedChange = 0.1;
+	private static final double maxThrowerSpeed = 0.8;
+	
+	public void setThrowerSpeed( double ts) {
+		if( ts >= 0.0 && ts <= maxThrowerSpeed) {
+			throwerSpeed = ts;
+		}
+		else if( ts < 0.0) {
+			throwerSpeed = 0.0;
+		}
+		else {
+			throwerSpeed = maxThrowerSpeed;
+		}
+	}
+	
+	public double getThrowerSpeed() {
+		return throwerSpeed;
+	}
+	
+	public void addToThrowerSpeed( double x) {
+		throwerSpeed += x;
+		if( throwerSpeed > maxThrowerSpeed) {
+			throwerSpeed = maxThrowerSpeed;
+		}
+	}
+	
+	public void subtractFromThrowerSpeed( double x) {
+		throwerSpeed -= x;
+		if( throwerSpeed < 0.0) {
+			throwerSpeed = 0.0;
+		}
+	}
+	
+	public void incThrowerSpeed() {
+		addToThrowerSpeed( stdThrowerSpeedChange);
+	}
 
+	public void decThrowerSpeed() {
+		subtractFromThrowerSpeed( stdThrowerSpeedChange);
+	}
+	
+	public void maintainThrowerSpeed() {
+		bigUn.set(ControlMode.PercentOutput, throwerSpeed);
+	}
+	//
+	// end 181128 thrower stuff
+	//
+	
+	
 	/**
 	 * The ArmPositions correspond to absolute positions on an encoder
 	 * feedback loop that the 'bot will score or get a cube from.
@@ -136,27 +191,15 @@ public class Arm extends Subsystem {
 
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("Arm Out: ", bigUn.getMotorOutputPercent());
-
-		SmartDashboard.putNumber("Arm Encoder Pos", bigUn.getSelectedSensorPosition(0));
-
-		SmartDashboard.putNumber("Sub Stick Y", Robot.oi.getSubStick().getY());
-		SmartDashboard.putNumber("Sub Stick X", Robot.oi.getSubStick().getX());
-	}
-
-	public void init() {
-		bigUn.setNeutralMode(NeutralMode.Brake);
-		setArmFeedback(10);
-
-		bigUn.configForwardSoftLimitEnable(false, 10);
-		bigUn.configReverseSoftLimitEnable(false, 10);
-
-		bigUn.configNominalOutputForward(0, 10);
-		bigUn.configNominalOutputReverse(0, 10);
-		bigUn.configPeakOutputForward(0.2, 10);//bigUn.configPeakOutputForward(1, 10);
-		bigUn.configPeakOutputReverse(-1, 10);
+		// 181129 added these to the smart dashboard
+		SmartDashboard.putNumber("Thrower Voltage(out): ", bigUn.getMotorOutputPercent());
+		SmartDashboard.putNumber("throwerSpeed: ", throwerSpeed);
 		
-		bigUn.configClosedloopRamp(0.5, 10); //seconds to full frontal val. Should help stop swinging. Could also use d-coeff.
+// 181128 commented all out 		
+//		SmartDashboard.putNumber("Arm Out: ", bigUn.getMotorOutputPercent());
+//		SmartDashboard.putNumber("Arm Encoder Pos", bigUn.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("Sub Stick Y", Robot.oi.getSubStick().getY());
+//		SmartDashboard.putNumber("Sub Stick X", Robot.oi.getSubStick().getX());
 	}
 
 	/**
@@ -203,5 +246,25 @@ public class Arm extends Subsystem {
 		// TODO Auto-generated method stub
 		return bigUn.getSelectedSensorPosition(0) < pos + threshold && bigUn.getSelectedSensorPosition(0) > pos - threshold;
 	}
+
+	
+	public void init() {
+		
+		bigUn.setNeutralMode(NeutralMode.Brake);
+//		setArmFeedback(10); // 181128 commented out.
+
+		bigUn.configForwardSoftLimitEnable(false, 10);
+		bigUn.configReverseSoftLimitEnable(false, 10);
+
+		bigUn.configNominalOutputForward(0, 10);
+		bigUn.configNominalOutputReverse(0, 10);
+		bigUn.configPeakOutputForward(1, 10);//181128 changed from 0.2 to 1
+		bigUn.configPeakOutputReverse(-1, 10);
+		
+		/* 181128 commented out
+		bigUn.configClosedloopRamp(0.5, 10); //seconds to full frontal val. Should help stop swinging. Could also use d-coeff.
+		*/
+	}
+
 }
 

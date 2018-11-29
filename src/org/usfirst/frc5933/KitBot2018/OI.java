@@ -102,12 +102,12 @@ public class OI {
 
 		driverY = new JoystickButton(driverStick, 4);
 		driverY.whenPressed(new EndGameTrigger());
-//
-//		driverBumperL = new JoystickButton(driverStick, 5);
-//		driverBumperL.whenPressed(new NullCommand());
-//
-//		driverBumperR = new JoystickButton(driverStick, 6);
-//		driverBumperR.whenPressed(new NullCommand());
+
+		driverBumperL = new JoystickButton(driverStick, 5);
+		driverBumperL.whenPressed( new ThrowerIncSpeed()); // 181128 // new NullCommand());
+
+		driverBumperR = new JoystickButton(driverStick, 6);
+		driverBumperR.whenPressed( new ThrowerDecSpeed()); // 181128 //new NullCommand());
 //
 		driverBack = new JoystickButton(driverStick, 7);
 		driverBack.whenPressed(new EndGameClimber(-1));

@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['description',['description',['../structctre_1_1phoenix_1_1sensors_1_1_pigeon_i_m_u_1_1_fusion_status.html#ae6f3a9f68e0a6f5c6f1de6a778070a62',1,'ctre::phoenix::sensors::PigeonIMU::FusionStatus::description()'],['../structctre_1_1phoenix_1_1sensors_1_1_pigeon_i_m_u_1_1_general_status.html#a3cbe93b7423c1b8cd791677d4390cba9',1,'ctre::phoenix::sensors::PigeonIMU::GeneralStatus::description()']]],
+  ['diff0term',['diff0Term',['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_talon_s_r_x_configuration.html#a9a9976224cf850cb63754e60934e49e4',1,'ctre::phoenix::motorcontrol::can::TalonSRXConfiguration::diff0Term()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_victor_s_p_x_configuration.html#a436ea5bec710a0f6a0a7e07df3e56fb9',1,'ctre::phoenix::motorcontrol::can::VictorSPXConfiguration::diff0Term()']]],
+  ['diff1term',['diff1Term',['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_talon_s_r_x_configuration.html#a672d825b6eeb302719836562fc5aa517',1,'ctre::phoenix::motorcontrol::can::TalonSRXConfiguration::diff1Term()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1can_1_1_victor_s_p_x_configuration.html#a4f85b45dd31f58dc987e326c32f3e1de',1,'ctre::phoenix::motorcontrol::can::VictorSPXConfiguration::diff1Term()']]]
+];
