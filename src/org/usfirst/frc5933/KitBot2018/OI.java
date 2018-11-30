@@ -98,16 +98,18 @@ public class OI {
 		driverB.whileHeld(new DriveStraightVision(0.5, SocketVisionSender.StartDepth, 0.4));
 
 		driverX = new JoystickButton(driverStick, 3);
-		driverX.whileHeld(new EndGameClimber(1));
-
+		// driverX.whileHeld(new EndGameClimber(1)); // 181128
+		driverX.whenPressed( new ThrowerDecSpeed()); // 181128
+		
 		driverY = new JoystickButton(driverStick, 4);
-		driverY.whenPressed(new EndGameTrigger());
+		// driverY.whenPressed(new EndGameTrigger()); // 181128
+		driverY.whenPressed( new ThrowerIncSpeed()); // 181128
 
-		driverBumperL = new JoystickButton(driverStick, 5);
-		driverBumperL.whenPressed( new ThrowerIncSpeed()); // 181128 // new NullCommand());
+		//driverBumperL = new JoystickButton(driverStick, 5);
+		//driverBumperL.whenPressed( new ThrowerIncSpeed()); // 181128 // new NullCommand());
 
-		driverBumperR = new JoystickButton(driverStick, 6);
-		driverBumperR.whenPressed( new ThrowerDecSpeed()); // 181128 //new NullCommand());
+		//driverBumperR = new JoystickButton(driverStick, 6);
+		//driverBumperR.whenPressed( new ThrowerDecSpeed()); // 181128 //new NullCommand());
 //
 		driverBack = new JoystickButton(driverStick, 7);
 		driverBack.whenPressed(new EndGameClimber(-1));
@@ -131,11 +133,13 @@ public class OI {
 //		subB.whenPressed(new NullCommand());
 
 		subX = new JoystickButton(subStick, 3);
-		subX.whileHeld(new VariableCubeControl_Eject());
-
+		//subX.whileHeld(new VariableCubeControl_Eject()); 181128
+		subX.whenPressed( new ThrowerDecSpeed()); // 181128
+		
 		subY = new JoystickButton(subStick, 4);
-		subY.whileHeld(new VariableCubeControl_Intake());
-
+		//subY.whileHeld(new VariableCubeControl_Intake());  181128
+		subY.whenPressed( new ThrowerIncSpeed()); // 181128
+		
 		subBumperL = new JoystickButton(subStick, 5);
 		subBumperL.whenPressed(new OpenTongs(true));
 
