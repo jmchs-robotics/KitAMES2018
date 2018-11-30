@@ -36,9 +36,9 @@ public class RobotMap {
 
     //drivetrain follower objects
     public static WPI_TalonSRX drivetrainLeftFollower1;
-    public static WPI_TalonSRX drivetrainLeftFollower2;
+    // public static WPI_TalonSRX drivetrainLeftFollower2; // Ceci 181129
     public static WPI_TalonSRX drivetrainRightFollower1;
-    public static WPI_TalonSRX drivetrainRightFollower2;
+    // public static WPI_TalonSRX drivetrainRightFollower2; // Ceci 181129
     
     //control system objects
     public static ADXRS450_Gyro roborioGyro;
@@ -73,11 +73,11 @@ public class RobotMap {
         
         //instantiate left side followers on even IDs
         drivetrainLeftFollower1 = new WPI_TalonSRX(12);
-        drivetrainLeftFollower2 = new WPI_TalonSRX(14);
+        // drivetrainLeftFollower2 = new WPI_TalonSRX(14); // Ceci 181129
         
         //instantiate right side followers on odd IDs
         drivetrainRightFollower1 = new WPI_TalonSRX(13);
-        drivetrainRightFollower2 = new WPI_TalonSRX(15);
+        // drivetrainRightFollower2 = new WPI_TalonSRX(15); // Ceci 181129
         
         //instantiate gyro. B/c it is an SPI gyroscope, no need for calibration methods yet
         roborioGyro = new ADXRS450_Gyro();
