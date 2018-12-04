@@ -8,7 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * 
+ * One of (currently) 2 sets of autonomous commands
+ * Other autonomous command set is ArmResetTestGroup
+ * This gets called by Robot.java in autonomousInit()
+ * 
  */
 public class AutonomousTestGroup extends CommandGroup {
 
