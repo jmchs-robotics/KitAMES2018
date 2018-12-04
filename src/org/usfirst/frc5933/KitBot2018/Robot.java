@@ -90,7 +90,7 @@ public class Robot extends TimedRobot {
 
 		ender.init();
 
-		SmartDashboard.putString("Software Guru: ", "Eric");
+		// SmartDashboard.putString("Software Guru: ", "Eric"); // 181203 Not any more :)
 	}
 
 	/** 

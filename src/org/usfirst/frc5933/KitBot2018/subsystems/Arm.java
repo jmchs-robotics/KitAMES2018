@@ -30,11 +30,17 @@ public class Arm extends Subsystem {
 	private static final double kF = 0;
 	
 	//
-	// start 181128 work - operate the thrower motor
+	// start 181128, 181202 work - operate the thrower motor
 	//
 	private double throwerSpeed = 0.0;  // 181128 the desired speed of the thrower, from 0.0 to 1.0
-	private static final double stdThrowerSpeedChange = 0.1;
+	private double throwerSpeedToTalon = 0.0;  // 181202 instantaneously set Talon Percent to this
+	private static final double stdThrowerSpeedChange = 0.05;
 	private static final double maxThrowerSpeed = 0.8;
+	private static final double throwerSpeedToEncoderRatio = 35 / 0.1;
+	// thrower's P coefficient (PID) 
+	// tweak this to alter the feedback's effect on the Talon's voltage. 
+	// On 12/2/18 the best setting was 3.0.  4.0 was pretty bad.
+	private static final double throwerSpeedCoefficient = 3.0; // thrower's P coefficient (PID) 
 	
 	public void setThrowerSpeed( double ts) {
 		if( ts >= 0.0 && ts <= maxThrowerSpeed) {
@@ -61,7 +67,7 @@ public class Arm extends Subsystem {
 	
 	public void subtractFromThrowerSpeed( double x) {
 		throwerSpeed -= x;
-		if( throwerSpeed < 0.0) {
+		if( throwerSpeed < 1e-10) {
 			throwerSpeed = 0.0;
 		}
 	}
@@ -74,9 +80,26 @@ public class Arm extends Subsystem {
 		subtractFromThrowerSpeed( stdThrowerSpeedChange);
 	}
 	
-	public void maintainThrowerSpeed() {
-		bigUn.set(ControlMode.PercentOutput, throwerSpeed);
+	public void maintainThrowerSpeed() { 
+		// bigUn.set(ControlMode.PercentOutput, throwerSpeed); // plain "VBus style" before 121202
+		// 181202 maintain desired speed based on encoder feedback
+		double e = getThrowerEncoderVelocity() * 1.0; 
+		double t = throwerSpeed * throwerSpeedToEncoderRatio;
+		double p = ( t-e) / 350.0 * throwerSpeedCoefficient;
+		throwerSpeedToTalon = throwerSpeed + p;
+		if( throwerSpeedToTalon < 0.0) { // prevent "slapping" the motor with negative voltage
+			throwerSpeedToTalon = 0.0;
+		}
+
+		bigUn.set(ControlMode.PercentOutput, throwerSpeedToTalon);
 	}
+	
+	public int getThrowerEncoderVelocity() {
+		// returning negative of raw talon sensor so it matches control direction
+		int quadVel = - bigUn.getSensorCollection().getQuadratureVelocity();
+		return quadVel; // 
+	}
+
 	//
 	// end 181128 thrower stuff
 	//
@@ -192,8 +215,11 @@ public class Arm extends Subsystem {
 	@Override
 	public void periodic() {
 		// 181129 added these to the smart dashboard
-		SmartDashboard.putNumber("Thrower Voltage(out): ", bigUn.getMotorOutputPercent());
-		SmartDashboard.putNumber("throwerSpeed: ", throwerSpeed);
+		SmartDashboard.putNumber("Thrower Voltage feedback from Talon: ", bigUn.getMotorOutputPercent());
+		SmartDashboard.putNumber("Desired throwerSpeed: ", throwerSpeed);
+		SmartDashboard.putNumber("Thrower encoder sensed speed: ", getThrowerEncoderVelocity());
+		SmartDashboard.putNumber("Setting thrower percent to:", throwerSpeedToTalon);
+
 		
 // 181128 commented all out 		
 //		SmartDashboard.putNumber("Arm Out: ", bigUn.getMotorOutputPercent());

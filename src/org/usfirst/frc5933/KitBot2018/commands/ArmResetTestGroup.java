@@ -5,6 +5,10 @@ import org.usfirst.frc5933.KitBot2018.subsystems.Arm.ArmPosition;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * 
+ * One of (currently) 2 sets of autonomous commands
+ * Other autonomous command set is AutonomousTestGroup.java
+ * This gets called by Robot.java in autonomousInit()
  *
  */
 public class ArmResetTestGroup extends CommandGroup {
