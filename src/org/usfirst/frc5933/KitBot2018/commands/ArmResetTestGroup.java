@@ -31,7 +31,14 @@ public class ArmResetTestGroup extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	testResettingArm();
+    	//testResettingArm();
+    }
+   
+    private void driveAmes2018() {
+    	//Drive straight to align with pool.
+    	addSequential(new DriveStraightGyro(198.0,.7,true));
+    	//add command to throw.
+    	//Drive straight to score line.
     }
     
     private void testResettingArm() {
