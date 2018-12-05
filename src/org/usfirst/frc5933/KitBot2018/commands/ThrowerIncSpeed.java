@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * 181128
- * ThrowerIncSpeed increments the speed of the thrower, e.g. each time the left bumper is pressed.
+ * ThrowerIncSpeed increments the speed of the thrower, e.g. each time the Y button is pressed.
  */
 public class ThrowerIncSpeed extends CommandGroup {
 
