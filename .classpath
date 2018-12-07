@@ -17,7 +17,5 @@
 	<classpathentry kind="lib" path="/Users/jon/wpilib/java/current/lib/wpiutil-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix_WPIAPI-sources.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix_WPIAPI.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
