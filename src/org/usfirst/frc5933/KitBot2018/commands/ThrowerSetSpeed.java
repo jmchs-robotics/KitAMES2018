@@ -6,15 +6,18 @@ import org.usfirst.frc5933.KitBot2018.subsystems.Arm.ArmPosition;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * 181128
- * ThrowerIncSpeed decrements the speed of the thrower, e.g. each time the X button is pressed.
+ * 181205
+ * ThrowerSetSpeed turns on the motor of the thrower, e.g. each time the button is pressed.
  */
-public class ThrowerDecSpeed extends CommandGroup {
+public class ThrowerSetSpeed extends CommandGroup {
 
-    public ThrowerDecSpeed() {
+	public double throwerSpeed;
+	
+    public ThrowerSetSpeed(double ts) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
+    	throwerSpeed = ts;
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +26,7 @@ public class ThrowerDecSpeed extends CommandGroup {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.decThrowerSpeed();
+    	Robot.arm.setThrowerSpeed(throwerSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

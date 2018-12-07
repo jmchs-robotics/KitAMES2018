@@ -32,13 +32,55 @@ public class ArmResetTestGroup extends CommandGroup {
         // arm.
     	
     	//testResettingArm();
+    	driveAmes2018();
     }
    
     private void driveAmes2018() {
-    	//Drive straight to align with pool.
-    	addSequential(new DriveStraightGyro(198.0,.7,true));
-    	//add command to throw.
+    	//Drive straight to align with pool.//198''//changed to seconds for testing
+    	addSequential(new DriveStraightGyro(8,.7));
+    	//add command start the motor so we can throw.
+    	addSequential(new ThrowerSetSpeed(0.5));
+    	
+    	//add command to drop balls in.(5 times)
+    	addSequential(new OpenTongs(true));
+    	addSequential(new Wait(2.0));
+    	addSequential(new CloseTongs(true));
+    	addSequential(new Wait(2.0));
+    	
+    	addSequential(new OpenTongs(true));
+    	addSequential(new Wait(2.0));
+    	addSequential(new CloseTongs(true));
+    	addSequential(new Wait(2.0));
+    	
+    	addSequential(new OpenTongs(true));
+    	addSequential(new Wait(2.0));
+    	addSequential(new CloseTongs(true));
+    	addSequential(new Wait(2.0));
+    	
+    	addSequential(new OpenTongs(true));
+    	addSequential(new Wait(2.0));
+    	addSequential(new CloseTongs(true));
+    	addSequential(new Wait(2.0));
+    	
+    	addSequential(new OpenTongs(true));
+    	addSequential(new Wait(2.0));
+    	addSequential(new CloseTongs(true));
+    	addSequential(new Wait(2.0));
+    	
     	//Drive straight to score line.
+    	addSequential(new DriveStraightGyro(174,.7,true));
+    	//Turn left ... 90 degrees
+    	//Drive Straight for 960'' + the length of Kit
+    	addSequential(new DriveStraightGyro(960,.7,true));
+    	//Turn 90 degrees to the left
+    	//Drive Straight for 336'' + the length of kit.
+    	addSequential(new DriveStraightGyro(336,.7,true));
+    	//Turn 90 degrees to the left
+    	// Drive another 960'' + length of kit'
+    	addSequential(new DriveStraightGyro(960,.7,true));
+    	//turn 90* L
+    	//Drive straight another 336'' to complete a full lap.
+    	addSequential(new DriveStraightGyro(336,.7,true));
     }
     
     private void testResettingArm() {
@@ -46,4 +88,5 @@ public class ArmResetTestGroup extends CommandGroup {
     	
     	addSequential(new MoveArmToPos(ArmPosition.Scale, false));
     }
+    
 } 
