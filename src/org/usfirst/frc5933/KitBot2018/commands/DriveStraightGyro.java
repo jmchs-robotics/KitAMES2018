@@ -22,7 +22,7 @@ public class DriveStraightGyro extends Command {
     	requires(Robot.drivetrain);
     	
     	endVal = timeToRun;
-    	vBus = -percentVBus;
+    	vBus = percentVBus;  // Was negative percentVBus before 181206
     	useFeedback = false;
     }
     
@@ -37,7 +37,10 @@ public class DriveStraightGyro extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	try {
-    		Thread.sleep(10);
+    		// milliseconds. I wonder if this is what causes 
+    		//  'failed to update SRX quickly enough' errors, 
+    		// maybe also causes stop/start between consecutive runs
+    		Thread.sleep(10);  
     	}catch(Exception e) {}
     	SmartDashboard.putString("Current Command: ", "DriveStraightGyro");
     	

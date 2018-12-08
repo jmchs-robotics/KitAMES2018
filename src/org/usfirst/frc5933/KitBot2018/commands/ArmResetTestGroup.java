@@ -36,10 +36,15 @@ public class ArmResetTestGroup extends CommandGroup {
     }
    
     private void driveAmes2018() {
-    	//Drive straight to align with pool.//198''//changed to seconds for testing
+    	// disable thrower, in case it was 'left on' from a previous run
+    	addSequential(new ThrowerSetSpeed(0.0));
+    	
+    	//Drive straight to align with pool, 198"  
     	addSequential(new DriveStraightGyro( 120, 0.5, true));
     	//add command start the motor so we can throw.
     	addSequential(new ThrowerSetSpeed(0.5));
+    	// let thrower come up to speed
+    	addSequential( new Wait( 1.0)); 
     	
     	double w1 = 1.0;
     	double w2 = 1.0;
