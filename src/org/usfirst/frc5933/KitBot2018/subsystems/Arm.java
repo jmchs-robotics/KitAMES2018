@@ -37,6 +37,7 @@ public class Arm extends Subsystem {
 	private static final double stdThrowerSpeedChange = 0.05;
 	private static final double maxThrowerSpeed = 0.8;
 	private static final double throwerSpeedToEncoderRatio = 35 / 0.1;
+	private int blindCounter = 0;
 	// thrower's P coefficient (PID) 
 	// tweak this to alter the feedback's effect on the Talon's voltage. 
 	// On 12/2/18 the best setting was 3.0.  4.0 was pretty bad.
@@ -81,6 +82,7 @@ public class Arm extends Subsystem {
 	}
 	
 	public void maintainThrowerSpeed() { 
+		blindCounter++;
 		// bigUn.set(ControlMode.PercentOutput, throwerSpeed); // plain "VBus style" before 121202
 		// 181202 maintain desired speed based on encoder feedback
 		double e = getThrowerEncoderVelocity() * 1.0; 
@@ -219,7 +221,7 @@ public class Arm extends Subsystem {
 		SmartDashboard.putNumber("Desired throwerSpeed: ", throwerSpeed);
 		SmartDashboard.putNumber("Thrower encoder sensed speed: ", getThrowerEncoderVelocity());
 		SmartDashboard.putNumber("Setting thrower percent to:", throwerSpeedToTalon);
-
+		SmartDashboard.putNumber("blindCounter: ", blindCounter);
 		
 // 181128 commented all out 		
 //		SmartDashboard.putNumber("Arm Out: ", bigUn.getMotorOutputPercent());

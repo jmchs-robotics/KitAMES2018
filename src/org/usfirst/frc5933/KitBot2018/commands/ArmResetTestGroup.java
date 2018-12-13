@@ -37,14 +37,14 @@ public class ArmResetTestGroup extends CommandGroup {
    
     private void driveAmes2018() {
     	// disable thrower, in case it was 'left on' from a previous run
-    	addSequential(new ThrowerSetSpeed(0.0));
+    	//addSequential(new ThrowerSetSpeed(0.0));
     	
-    	//Drive straight to align with pool, 198"  
-    	addSequential(new DriveStraightGyro( 120, 0.5, true));
     	//add command start the motor so we can throw.
     	addSequential(new ThrowerSetSpeed(0.5));
+    	//Drive straight to align with pool, 198"
+    	addSequential(new DriveStraightGyro( 120, 0.5, true));
     	// let thrower come up to speed
-    	addSequential( new Wait( 1.0)); 
+    	//addSequential( new Wait( 1.0)); 
     	
     	double w1 = 1.0;
     	double w2 = 1.0;
@@ -75,8 +75,8 @@ public class ArmResetTestGroup extends CommandGroup {
     	addSequential(new Wait(w2));
     	
     	//Drive straight to score line.
-    	addSequential(new DriveStraightGyro( 1, 0.5, true)); // 'dummy' call because every other call fails
-    	addSequential(new DriveStraightGyro( 120, 0.5, true));
+    	//addSequential(new DriveStraightGyro( 1, 0.5, true)); // 'dummy' call because every other call fails
+    	//addSequential(new DriveStraightGyro( 120, 0.5, true));
     	//Turn left ... 90 degrees
     	/*
     	//Drive Straight for 960'' + the length of Kit
