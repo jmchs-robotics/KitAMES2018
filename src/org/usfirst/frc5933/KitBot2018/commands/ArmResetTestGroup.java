@@ -39,17 +39,31 @@ public class ArmResetTestGroup extends CommandGroup {
     	// disable thrower, in case it was 'left on' from a previous run
     	//addSequential(new ThrowerSetSpeed(0.0));
     	
-    	//add command start the motor so we can throw.
-    	addSequential(new ThrowerSetSpeed(0.5));
+    	addParallel(new DefaultArm()); // run in the background to to keep calling execute arm
     	//Drive straight to align with pool, 198"
-    	addSequential(new DriveStraightGyro( 120, 0.5, true));
+    	addSequential(new DriveStraightGyro( 198, 0.5, true));
+    	
+    	//
+    	//List of Commands to Get Thrower up to Speed
+    	//
+    	//add command start the motor so we can throw.
+    	addSequential(new ThrowerSetSpeed(0.1));
     	// let thrower come up to speed
-    	//addSequential( new Wait( 1.0)); 
+    	addSequential( new Wait( 1)); 
+    	//add command start the motor so we can throw.
+    	addSequential(new ThrowerSetSpeed(0.2));
+    	// let thrower come up to speed
+    	addSequential( new Wait( 1)); 
+    	//add command start the motor so we can throw.
+    	addSequential(new ThrowerSetSpeed(0.3));
+    	// let thrower come up to speed
+    	addSequential( new Wait( 1));
+    	
     	
     	double w1 = 1.0;
     	double w2 = 1.0;
     	//add command to drop balls in.(5 times)
-    	addSequential(new OpenTongs(true));
+    	/**addSequential(new OpenTongs(true));
     	addSequential(new Wait(w1));
     	addSequential(new CloseTongs(true));
     	addSequential(new Wait(w2));
@@ -73,11 +87,16 @@ public class ArmResetTestGroup extends CommandGroup {
     	addSequential(new Wait(w1));
     	addSequential(new CloseTongs(true));
     	addSequential(new Wait(w2));
+    	*/
     	
     	//Drive straight to score line.
-    	//addSequential(new DriveStraightGyro( 1, 0.5, true)); // 'dummy' call because every other call fails
-    	//addSequential(new DriveStraightGyro( 120, 0.5, true));
+    	addSequential(new DriveStraightGyro( 152, 0.7, true)); // 'dummy' call because every other call fails
+    	addSequential(new DriveStraightGyro( 152, 0.7, true)); //added another 2 feet to reach alcove
+    	//Testing for backing up: should be 24" trying 50"
+    	addSequential( new DriveStraightGyro(-50,0.7,true)); // another 'Dummy' call
+    	addSequential( new DriveStraightGyro(-50,0.7,true)); //Back out of the alcove
     	//Turn left ... 90 degrees
+    	addSequential(new GyroTurn(-90, 0.7, 0.05));
     	/*
     	//Drive Straight for 960'' + the length of Kit
     	addSequential(new DriveStraightGyro(960,.7,true));
